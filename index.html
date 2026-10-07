@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Insider · Fan Hub</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #0f172a;
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header & navigation */
+        .header {
+            background: #0b1e33;
+            color: white;
+            padding: 0.8rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #e6b91e;
+        }
+
+        .logo i {
+            color: #e6b91e;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            color: #f1f5f9;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a:hover {
+            color: #e6b91e;
+            border-bottom-color: #e6b91e;
+        }
+
+        /* Hero / welcome */
+        .hero {
+            background: linear-gradient(135deg, #0b1e33 0%, #1e3a5f 100%);
+            color: white;
+            padding: 4rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            border-bottom: 5px solid #e6b91e;
+        }
+
+        .hero-text {
+            flex: 1 1 350px;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text h1 span {
+            color: #e6b91e;
+            border-bottom: 3px solid #e6b91e;
+        }
+
+        .hero-text p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e6b91e;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        .hero-image {
+            flex: 1 1 300px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image i {
+            font-size: 12rem;
+            color: rgba(230, 185, 30, 0.2);
+            transform: rotate(10deg);
+        }
+
+        /* Main content grid */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #0b1e33;
+        }
+
+        .section-title i {
+            color: #e6b91e;
+            font-size: 2rem;
+        }
+
+        /* Cards for engagement */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+            transition: 0.25s ease;
+            border: 1px solid #e9eef3;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            border-color: #e6b91e;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: #e6b91e;
+            margin-bottom: 1.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #0b1e33;
+        }
+
+        .card p {
+            color: #334155;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .card .btn {
+            align-self: flex-start;
+        }
+
+        /* Donation / support section — most important */
+        .donation-section {
+            background: #0b1e33;
+            color: white;
+            border-radius: 32px;
+            padding: 3rem 2.5rem;
+            margin: 3rem 0 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            box-shadow: 0 25px 40px -15px rgba(0,0,0,0.4);
+            border: 2px solid #e6b91e;
+        }
+
+        .donation-text {
+            flex: 2 1 350px;
+        }
+
+        .donation-text h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .donation-text h2 i {
+            color: #e6b91e;
+        }
+
+        .donation-text p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            max-width: 600px;
+        }
+
+        .till-box {
+            background: #1e3a5f;
+            padding: 1.5rem 2rem;
+            border-radius: 20px;
+            display: inline-flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.5rem;
+            border-left: 6px solid #e6b91e;
+            margin: 1rem 0;
+        }
+
+        .till-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+        }
+
+        .till-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #e6b91e;
+            font-family: 'Courier New', monospace;
+            background: #0b1e33;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .donation-cta {
+            flex: 1 1 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #e6b91e;
+            color: #0b1e33;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 14px rgba(230, 185, 30, 0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            background: #f5d04a;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(230, 185, 30, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e6b91e;
+            color: #e6b91e;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #e6b91e;
+            color: #0b1e33;
+        }
+
+        .copy-message {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            transition: 0.3s;
+            margin-top: 0.4rem;
+        }
+
+        .copy-message.success {
+            color: #4ade80;
+        }
+
+        /* quick poll / engagement widget */
+        .poll-box {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem;
+            margin-top: 2rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+        }
+
+        .poll-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1.2rem;
+            color: #0b1e33;
+        }
+
+        .poll-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            background: #f1f5f9;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .poll-option:hover {
+            background: #e2e8f0;
+        }
+
+        .poll-option input[type="radio"] {
+            accent-color: #e6b91e;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .poll-option label {
+            flex: 1;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .poll-result {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-left: 1rem;
+            font-weight: 600;
+        }
+
+        .poll-feedback {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #0b1e33;
+            background: #fef9e7;
+            padding: 0.6rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0b1e33;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            border-top: 3px solid #e6b91e;
+        }
+
+        .footer a {
+            color: #e6b91e;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+            .hero {
+                padding: 2.5rem 1.5rem;
+            }
+            .donation-section {
+                padding: 2rem 1.5rem;
+            }
+            .till-number {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-futbol"></i> Football Insider
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Analysis</a>
+            <a href="#">Community</a>
+            <a href="#support">Support</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Where <span>real fans</span> talk football.</h1>
+            <p>Join our community of over 15,000 followers. Get match insights, polls, and support the page — every contribution keeps the football coming.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">15k+</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Posts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Football</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-futbol"></i>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- engagement cards (simple, low maintenance) -->
+        <h2 class="section-title"><i class="fas fa-newspaper"></i> Fan zone</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Match insights</h3>
+                <p>Quick tactical breakdowns and stats — no fluff, just the beautiful game.</p>
+                <button class="btn btn-outline" onclick="alert('New analysis drops every matchday!')">Read latest</button>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-poll"></i></div>
+                <h3>Fan polls</h3>
+                <p>Vote on lineups, MOTM, and hot topics. Your voice matters here.</p>
+                <button class="btn btn-outline" onclick="document.getElementById('poll-anchor').scrollIntoView({behavior:'smooth'});">Vote now</button>
+            </div>
+            <div class="card">
+                <div class="card-icon"><i class="fas fa-users"></i></div>
+                <h3>Community</h3>
+                <p>Connect with fans who live and breathe football — just like you.</p>
+                <button class="btn btn-outline" onclick="alert('Join the conversation on our Facebook page!')">Join discussion</button>
+            </div>
+        </div>
+
+        <!-- POLL (simple engagement, no backend) -->
+        <div id="poll-anchor" class="poll-box">
+            <h3><i class="fas fa-vote-yea" style="color: #e6b91e;"></i> Quick poll: Who wins the league?</h3>
+            <form id="pollForm">
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="opt1" value="City">
+                    <label for="opt1">Manchester City</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="opt2" value="Arsenal">
+                    <label for="opt2">Arsenal</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="opt3" value="Liverpool">
+                    <label for="opt3">Liverpool</label>
+                </div>
+                <div class="poll-option">
+                    <input type="radio" name="poll" id="opt4" value="Other">
+                    <label for="opt4">Other</label>
+                </div>
+                <button type="submit" class="btn" style="margin-top: 1rem;"><i class="fas fa-check-circle"></i> Vote</button>
+            </form>
+            <div id="pollFeedback" class="poll-feedback" style="display: none;"></div>
+        </div>
+
+        <!-- DONATION / TILL SECTION (income to till 8806128) -->
+        <div id="support" class="donation-section">
+            <div class="donation-text">
+                <h2><i class="fas fa-hand-holding-heart"></i> Support the page</h2>
+                <p>Your contribution keeps the football content flowing. Every coin goes directly to improving the page — and it's fast & secure via M-Pesa.</p>
+                <div class="till-box">
+                    <div>
+                        <div class="till-label">M-PESA TILL NUMBER</div>
+                        <div class="till-number">8806128</div>
+                    </div>
+                    <button class="btn" id="copyTillBtn" style="padding: 0.8rem 1.5rem;"><i class="fas fa-copy"></i> Copy</button>
+                </div>
+                <p style="font-size: 0.95rem; opacity: 0.8;"><i class="fas fa-lock"></i> Paybill / Till: 8806128 — Name: Football Insider</p>
+            </div>
+            <div class="donation-cta">
+                <i class="fas fa-mobile-alt" style="font-size: 3.5rem; color: #e6b91e; margin-bottom: 0.5rem;"></i>
+                <a href="tel:*334*8806128*100%23" class="btn" style="font-size: 1.2rem; padding: 1rem 2rem;"><i class="fas fa-phone-alt"></i> Donate via M-Pesa</a>
+                <span style="font-size: 0.85rem; opacity: 0.7;">*Use till number 8806128</span>
+                <div id="copyMessage" class="copy-message"></div>
+            </div>
+        </div>
+
+        <!-- extra note (very minimal update needed) -->
+        <div style="background: #f1f5f9; border-radius: 16px; padding: 1.2rem 2rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+            <i class="fas fa-sync-alt" style="color: #e6b91e; font-size: 1.5rem;"></i>
+            <span style="font-weight: 500;">This site is built to stay fresh with minimal updates — polls, donation, and community links keep fans engaged.</span>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Football Insider · Built for the fans. Till: 8806128</p>
+        <p style="margin-top: 0.5rem; font-size: 0.9rem;">Follow us on Facebook for daily football updates.</p>
+    </footer>
+
+    <!-- JAVASCRIPT (simple interactivity + till copy) -->
+    <script>
+        (function() {
+            // ---- Till copy functionality ----
+            const copyBtn = document.getElementById('copyTillBtn');
+            const copyMsg = document.getElementById('copyMessage');
+            const tillNumber = '8806128';
+
+            function showMessage(text, isSuccess = true) {
+                copyMsg.textContent = text;
+                copyMsg.style.color = isSuccess ? '#4ade80' : '#f87171';
+                setTimeout(() => {
+                    copyMsg.textContent = '';
+                }, 2500);
+            }
+
+            copyBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(tillNumber).then(() => {
+                    showMessage('✓ Till number copied!', true);
+                }).catch(() => {
+                    // fallback
+                    const temp = document.createElement('textarea');
+                    temp.value = tillNumber;
+                    document.body.appendChild(temp);
+                    temp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(temp);
+                    showMessage('✓ Till number copied!', true);
+                });
+            });
+
+            // also copy from the displayed till number (clickable)
+            const tillDisplay = document.querySelector('.till-number');
+            if (tillDisplay) {
+                tillDisplay.style.cursor = 'pointer';
+                tillDisplay.addEventListener('click', function() {
+                    navigator.clipboard.writeText(tillNumber).then(() => {
+                        showMessage('✓ Till number copied!', true);
+                    }).catch(() => {
+                        showMessage('Copy manually: 8806128', false);
+                    });
+                });
+            }
+
+            // ---- Poll interaction (no backend, just friendly feedback) ----
+            const pollForm = document.getElementById('pollForm');
+            const pollFeedback = document.getElementById('pollFeedback');
+
+            pollForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const selected = document.querySelector('input[name="poll"]:checked');
+                if (!selected) {
+                    pollFeedback.style.display = 'block';
+                    pollFeedback.textContent = 'Please select an option before voting.';
+                    pollFeedback.style.background = '#fee2e2';
+                    pollFeedback.style.color = '#991b1b';
+                    return;
+                }
+                const vote = selected.value;
+                // Simulate a vote (no data saved, but gives engagement)
+                pollFeedback.style.display = 'block';
+                pollFeedback.style.background = '#fef9e7';
+                pollFeedback.style.color = '#0b1e33';
+                pollFeedback.innerHTML = `✅ Thanks for voting! You picked <strong>${vote}</strong>. Share your thoughts on our Facebook page.`;
+                // optional reset after 4 seconds
+                setTimeout(() => {
+                    pollFeedback.style.display = 'none';
+                }, 5000);
+            });
+
+            // ---- Smooth scroll for internal links ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // ---- Simple "stay longer" engagement: active poll highlight ----
+            // (nothing heavy, just a nice vibe)
+            console.log('Football Insider — ready to engage fans ⚽');
+        })();
+    </script>
+
+</body>
+</html>
